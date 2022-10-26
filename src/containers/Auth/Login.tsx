@@ -1,95 +1,92 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from 'react-router-dom';
-import logo from '../../assets/image/ASP-ICON.png';
-import { useAPI } from 'api/api';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { AuthContext } from 'containers/AuthProvider';
-import { Input } from 'components/Form';
-import { Box, Button, Card, FormHelperText, Grid, Stack } from '@mui/material';
-import Axios from 'axios';
+import React, { useContext, useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+import { useAPI } from "api/api";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthContext } from "containers/AuthProvider";
+import { Input } from "components/Form";
+import { Box, Button, Card, FormHelperText, Grid, Stack } from "@mui/material";
 
-interface Error{
-  status: number
+interface Error {
+  status: number;
   data: {
-    message: string
-  }
+    message: string;
+  };
 }
-
 
 const useStyle = makeStyles((theme) => ({
   container: {
-    width: '100%',
-    height: '100%',
-    background: '#efebe9',
-    backgroundSize: 'cover',
-    display: 'flex',
-    justifyContent: 'center',
-    minHeight: '585px',
+    width: "100%",
+    height: "100%",
+    background: "#efebe9",
+    backgroundSize: "cover",
+    display: "flex",
+    justifyContent: "center",
+    minHeight: "585px",
   },
   content: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundImage: `url("/images/bg.png")`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    alignContent: 'center',
-    [theme.breakpoints.up('lg')]: {
-      height: '100%',
-      width: '100%',
-      padding: '0px calc(5% - 420px/2 + 270px)',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    alignContent: "center",
+    [theme.breakpoints.up("lg")]: {
+      height: "100%",
+      width: "100%",
+      padding: "0px calc(5% - 420px/2 + 270px)",
     },
-    [theme.breakpoints.down('lg')]: {
-      height: '100%',
-      width: '100%',
-      padding: '0px calc(5% - 420px/2 + 200px)',
+    [theme.breakpoints.down("lg")]: {
+      height: "100%",
+      width: "100%",
+      padding: "0px calc(5% - 420px/2 + 200px)",
     },
-    [theme.breakpoints.down('md')]: {
-      height: '100%',
-      width: '100%',
-      padding: '0px calc(5% - 420px/2 + 200px)',
+    [theme.breakpoints.down("md")]: {
+      height: "100%",
+      width: "100%",
+      padding: "0px calc(5% - 420px/2 + 200px)",
     },
-    [theme.breakpoints.down('sm')]: {
-      height: '100%',
-      width: '100%',
-      padding: '10px',
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+      width: "100%",
+      padding: "10px",
     },
-    [theme.breakpoints.down('xs')]: {
-      justifyContent: 'center',
+    [theme.breakpoints.down("xs")]: {
+      justifyContent: "center",
     },
   },
   contentRight: {
-    padding: '64px 24px',
+    padding: "64px 24px",
     borderRadius: 14,
     maxHeight: 630,
-    position: 'absolute',
-    display: 'flex',
-    flexFlow: 'column',
-    [theme.breakpoints.up('lg')]: {},
-    [theme.breakpoints.down('xs')]: {
-      width: '100%',
-      height: '100%',
+    position: "absolute",
+    display: "flex",
+    flexFlow: "column",
+    [theme.breakpoints.up("lg")]: {},
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: "100%",
       borderRadius: 0,
-      justifyContent: 'center',
+      justifyContent: "center",
     },
-    boxShadow: '0px 0px 30px #1c2f54',
+    boxShadow: "0px 0px 30px #1c2f54",
   },
   tab: {
-    width: '50%',
-    fontWeight: 'bold',
-    background: '#ffffffc7',
+    width: "50%",
+    fontWeight: "bold",
+    background: "#ffffffc7",
   },
   tabActive: {
-    background: '#0a49ed91',
-    '-webkit-transition': 'background-color 1000ms linear',
-    '-moz-transition': 'background-color 1000ms linear',
-    '-o-transition': 'background-color 1000ms linear',
-    '-ms-transition': 'background-color 1000ms linear',
-    transition: 'background-color 1000ms linear',
-    color: 'white',
+    background: "#0a49ed91",
+    "-webkit-transition": "background-color 1000ms linear",
+    "-moz-transition": "background-color 1000ms linear",
+    "-o-transition": "background-color 1000ms linear",
+    "-ms-transition": "background-color 1000ms linear",
+    transition: "background-color 1000ms linear",
+    color: "white",
   },
 }));
 
@@ -108,10 +105,10 @@ export default function Login() {
   const history = useHistory();
   const api = useAPI();
   const { admin } = useContext(AuthContext);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   useEffect(() => {
     if (admin) {
-      history.push('/');
+      history.push("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [admin]);
@@ -125,14 +122,14 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
   const login = async (values: credential) => {
     try {
-      const res = await api.fetcher('post', '/login', {
+      const res = await api.fetcher("post", "/login", {
         email: values.email,
         password: values.password,
       });
@@ -141,7 +138,7 @@ export default function Login() {
         updateAdminToken(res.access_token);
       }
     } catch (e) {
-      const error = e as Error; 
+      const error = e as Error;
       if (error?.status === 401) {
         setError(error?.data?.message);
       }
@@ -152,26 +149,18 @@ export default function Login() {
     <div
       style={{
         padding: 0,
-        maxWidth: '100vw',
-        height: '100%',
-        background: '#efebe9',
+        maxWidth: "100vw",
+        height: "100%",
+        background: "#efebe9",
       }}
     >
-      <div style={{ height: '100%', background: '#efebe9' }}>
+      <div style={{ height: "100%", background: "#efebe9" }}>
         <div className={classes.container}>
           <Card className={classes.content}>
             <div className={classes.contentRight}>
-              <Stack alignItems='center' spacing={3} mb={2}>
-                <img style={{ height: 86 }} src={logo} alt='' />
-                <img
-                  src='/images/logo-text.svg'
-                  alt='logo'
-                  width={240}
-                  height={50}
-                />
-              </Stack>
+              <Stack alignItems="center" spacing={3} mb={2}></Stack>
               <Box
-                component='form'
+                component="form"
                 onSubmit={handleSubmit(login)}
                 noValidate
                 sx={{ mt: 1 }}
@@ -180,19 +169,19 @@ export default function Login() {
                   <Grid item xs={12}>
                     <Input
                       fullWidth
-                      name='email'
-                      label='Email'
+                      name="email"
+                      label="Email"
                       control={control}
                       sx={{
-                        backgroundColor: '#000',
-                        color: '#fff',
-                        border: '1px solid #BDBDBD',
-                        borderRadius: '8px',
+                        backgroundColor: "#000",
+                        color: "#fff",
+                        border: "1px solid #BDBDBD",
+                        borderRadius: "8px",
                       }}
                       controlProps={{
                         sx: {
-                          '&& .MuiFormLabel-root': {
-                            color: '#fff',
+                          "&& .MuiFormLabel-root": {
+                            color: "#fff",
                           },
                         },
                       }}
@@ -201,23 +190,23 @@ export default function Login() {
                   <Grid item xs={12}>
                     <Input
                       fullWidth
-                      name='password'
-                      label='Password'
-                      type='password'
+                      name="password"
+                      label="Password"
+                      type="password"
                       control={control}
                       sx={{
-                        backgroundColor: '#000',
-                        color: '#fff',
-                        border: '1px solid #BDBDBD',
-                        borderRadius: '8px',
-                        '&& .MuiSvgIcon-root': {
-                          color: '#fff',
+                        backgroundColor: "#000",
+                        color: "#fff",
+                        border: "1px solid #BDBDBD",
+                        borderRadius: "8px",
+                        "&& .MuiSvgIcon-root": {
+                          color: "#fff",
                         },
                       }}
                       controlProps={{
                         sx: {
-                          '&& .MuiFormLabel-root': {
-                            color: '#fff',
+                          "&& .MuiFormLabel-root": {
+                            color: "#fff",
                           },
                         },
                       }}
@@ -230,15 +219,15 @@ export default function Login() {
                 </Grid>
                 <Grid item xs={12} style={{ marginTop: 32 }}>
                   <Button
-                    variant='contained'
+                    variant="contained"
                     fullWidth
-                    type='submit'
+                    type="submit"
                     style={{
-                      backgroundColor: '#00F0FF',
+                      backgroundColor: "#00F0FF",
                       fontWeight: 700,
                       borderRadius: 12,
                       padding: 10,
-                      color: '#000',
+                      color: "#000",
                       marginTop: 18,
                     }}
                   >

@@ -1,11 +1,7 @@
-import { PERM } from "common/constant";
 import { lazy } from "react";
 import Login from "../containers/Auth/Login";
 
 const Home = lazy(() => import("containers/Home"));
-
-export const adminPrefix = "";
-export const adminApi = "/admin";
 
 export function LoginRoute() {
   return [
@@ -17,16 +13,15 @@ export function LoginRoute() {
   ];
 }
 
-export function AdminRoutes() {
-  const adminRoutes = [
+export function UserRoutes() {
+  const userRoutes = [
     {
       path: "/",
       component: Home,
       protected: true,
-      permissions: [PERM.ADMIN, PERM.PROJECT_OWNER],
       name: "Dashboard",
     },
   ];
 
-  return { adminRoutes };
+  return { userRoutes };
 }

@@ -6,7 +6,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { AuthContext } from "../AuthProvider";
 import { useHistory } from "react-router-dom";
-import logo from "../../assets/image/ASP-ICON.png";
 import color from "../../common/color.json";
 import { IconButton, Popover, Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -131,15 +130,7 @@ export default function Header(props: any) {
         >
           <div className={classes.leftBar} style={{ paddingLeft: 15 }}>
             {show === true && (
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <img style={{ height: 70 }} src={logo} alt="" />
-                <img
-                  src="/images/logo-text.svg"
-                  alt="logo"
-                  width={240}
-                  height={50}
-                />
-              </Stack>
+              <Stack direction="row" alignItems="center" spacing={2}></Stack>
             )}
           </div>
           <Stack>
