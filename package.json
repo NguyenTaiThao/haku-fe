@@ -1,0 +1,87 @@
+{
+  "name": "ncc",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/moment": "^1.3.13",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@hookform/resolvers": "^2.9.3",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/pickers": "^3.2.10",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "^5.0.0-alpha.88",
+    "@mui/material": "^5.8.6",
+    "@mui/system": "^5.8.6",
+    "@tinymce/tinymce-react": "^3.8.1",
+    "@types/jest": "^28.1.3",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-copy-to-clipboard": "^5.0.3",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-table": "^7.7.12",
+    "axios": "^0.20.0",
+    "date-fns": "^2.16.1",
+    "firebase": "^8.9.1",
+    "formik": "^2.1.5",
+    "i18next": "^19.7.0",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "jotai": "^1.7.2",
+    "material-table": "^1.69.1",
+    "moment": "^2.28.0",
+    "node-sass": "^7.0.1",
+    "react": "^16.14.0",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-calendar": "^3.1.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-date-range": "^1.1.3",
+    "react-dom": "^16.14.0",
+    "react-dropzone": "^11.2.0",
+    "react-file-viewer": "^1.2.1",
+    "react-google-login": "^5.2.2",
+    "react-hook-form": "^7.33.0",
+    "react-i18next": "^11.7.2",
+    "react-number-format": "^4.4.1",
+    "react-query": "^3.39.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.4",
+    "react-table": "^7.7.0",
+    "react-table-sticky": "^1.1.3",
+    "react-toastify": "^6.0.8",
+    "styled-components": "^5.3.3",
+    "swiper": "^6.3.5",
+    "swr": "^0.3.2",
+    "timeago.js": "^4.0.0-beta.3",
+    "typescript": "^4.7.4",
+    "xlsx": "^0.16.9",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
+    "@types/yup": "^0.29.14",
+    "prettier": "2.1.2"
+  }
+}
