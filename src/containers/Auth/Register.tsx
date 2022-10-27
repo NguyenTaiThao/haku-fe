@@ -106,9 +106,13 @@ type credential = {
 const schema = yup.object({
   email: yup.string().required(),
   password: yup.string().required(),
+  repassword: yup
+    .string()
+    .required()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
-export default function Login() {
+export default function Register() {
   const classes = useStyle();
   const history = useHistory();
   const api = useAPI();
@@ -132,10 +136,11 @@ export default function Login() {
     defaultValues: {
       email: "",
       password: "",
+      repassword: "",
     },
   });
 
-  const login = async (values: credential) => {
+  const register = async (values: credential) => {
     try {
       const res = await api.fetcher("post", "/login", {
         email: values.email,
@@ -169,7 +174,7 @@ export default function Login() {
               <Stack alignItems="center" spacing={3} mb={2}></Stack>
               <Box
                 component="form"
-                onSubmit={handleSubmit(login)}
+                onSubmit={handleSubmit(register)}
                 noValidate
                 sx={{ mt: 1 }}
               >
@@ -220,6 +225,31 @@ export default function Login() {
                       }}
                     />
                   </Grid>
+                  <Grid item xs={12}>
+                    <Input
+                      fullWidth
+                      name="repassword"
+                      label="Password confirmation"
+                      type="password"
+                      control={control}
+                      sx={{
+                        backgroundColor: "#000",
+                        color: "#fff",
+                        border: "1px solid #BDBDBD",
+                        borderRadius: "8px",
+                        "&& .MuiSvgIcon-root": {
+                          color: "#fff",
+                        },
+                      }}
+                      controlProps={{
+                        sx: {
+                          "&& .MuiFormLabel-root": {
+                            color: "#fff",
+                          },
+                        },
+                      }}
+                    />
+                  </Grid>
                 </Grid>
 
                 <Grid>
@@ -239,7 +269,7 @@ export default function Login() {
                       marginTop: 18,
                     }}
                   >
-                    Login
+                    Register
                   </Button>
                 </Grid>
                 <Grid mt={5}>
@@ -249,9 +279,9 @@ export default function Login() {
                     align="center"
                     style={{ color: "#fff" }}
                   >
-                    {"Don't have an account? "}
-                    <Link to="/register" style={{ color: "#00F0FF" }}>
-                      Sign Up
+                    {"Already have an account? "}
+                    <Link to="/login" style={{ color: "#00F0FF" }}>
+                      Sign in
                     </Link>
                   </Typography>
                 </Grid>

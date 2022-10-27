@@ -13,6 +13,8 @@ import clsx from "clsx";
 import { Paper } from "@material-ui/core";
 import Header from "./Header";
 import NoMatch from "containers/NoMatch";
+import FolderCopySharpIcon from '@mui/icons-material/FolderCopySharp';
+import LocalLibrarySharpIcon from '@mui/icons-material/LocalLibrarySharp';
 
 const Layout = React.memo((props) => {
   const [open, setOpen] = useState(
@@ -31,8 +33,17 @@ const Layout = React.memo((props) => {
     {
       label: "Home",
       icon: <HomeIcon />,
-      perm: "",
       path: "/",
+    },
+    {
+      label: "Sets",
+      icon: <FolderCopySharpIcon />,
+      path: "/sets",
+    },
+    {
+      label: "Learn",
+      icon: <LocalLibrarySharpIcon />,
+      path: "/learn",
     },
   ];
 
