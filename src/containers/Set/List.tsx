@@ -10,12 +10,18 @@ import { Page } from "components/Page";
 import { SetType } from "lib/types";
 import { TopHeader } from "components/TopHeader";
 import { format } from "date-fns";
+import {
+  CircularProgress,
+  CircularProgressProps,
+  Typography,
+} from "@mui/material";
+import { Box } from "@mui/system";
 
 export default function Index() {
   const { paginationData, refetch, handleChangeParams } = usePaginationQuery<
     SetType
   >("sets");
-  const { deleteApi } = useApiResource<SetType>("projects");
+  const { deleteApi } = useApiResource<SetType>("sets");
   const history = useHistory();
   const dialog = useDialog();
   const { hasCreate: hasCreatePerm } = useCheckPerm();
@@ -72,21 +78,27 @@ export default function Index() {
         width: 150,
       },
       {
-        Header: "Created Date",
-        accessor: "created_at",
-        width: 150,
+        Header: "Number of cards",
+        accessor: "card_count",
+        width: 100,
+      },
+      {
+        Header: "Learned",
+        accessor: "learned_percent",
+        width: 100,
         Cell: ({ value }: CellProps<SetType>) => {
           return (
-            <CellContainer>
-              {format(new Date(value), "kk:mm MMM dd, u")}
-            </CellContainer>
+            <CircularProgressWithLabel
+              value={value}
+            ></CircularProgressWithLabel>
           );
         },
       },
       {
-        Header: "Last Updated Date",
-        accessor: "updated_at",
+        Header: "Created Date",
+        accessor: "created_at",
         width: 150,
+        search: false,
         Cell: ({ value }: CellProps<SetType>) => {
           return (
             <CellContainer>
@@ -115,5 +127,33 @@ export default function Index() {
         onRowClick={onRowClick}
       />
     </Page>
+  );
+}
+
+function CircularProgressWithLabel(
+  props: CircularProgressProps & { value: number }
+) {
+  return (
+    <Box sx={{ position: "relative", display: "inline-flex" }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          color="text.secondary"
+        >{`${Math.round(props.value)}%`}</Typography>
+      </Box>
+    </Box>
   );
 }

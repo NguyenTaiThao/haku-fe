@@ -30,10 +30,6 @@ function RawInput({
   value,
   ...props
 }: RawInputProps) {
-  const handlePDF = (url: string) => {
-    window.open(url, "_blank");
-  };
-
   return (
     <InputControl
       fieldError={fieldError}

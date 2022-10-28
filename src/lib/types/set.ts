@@ -1,3 +1,5 @@
+import { CardType } from "./card";
+
 export type SetType = {
   id: number;
   name: string;
@@ -5,5 +7,7 @@ export type SetType = {
   created_at: string;
   updated_at: string;
   user_id: number;
-  card_num: number;
+  cards: CardType[];
+  card_count: number;
+  learned_percent: number;
 };

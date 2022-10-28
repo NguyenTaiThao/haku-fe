@@ -142,7 +142,7 @@ export default function Register() {
 
   const register = async (values: credential) => {
     try {
-      const res = await api.fetcher("post", "/login", {
+      const res = await api.fetcher("post", "/register", {
         email: values.email,
         password: values.password,
       });

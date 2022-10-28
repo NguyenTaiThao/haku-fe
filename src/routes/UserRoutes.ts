@@ -1,3 +1,4 @@
+import { Dashboard } from "containers/Dashboard";
 import { lazy } from "react";
 
 const Home = lazy(() => import("containers/Home"));
@@ -10,7 +11,7 @@ export function UserRoutes() {
   const userRoutes = [
     {
       path: "/",
-      component: Home,
+      component: Dashboard,
       protected: true,
       name: "Dashboard",
     },
