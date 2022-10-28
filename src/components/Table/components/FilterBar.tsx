@@ -204,7 +204,15 @@ function FilterBarComponent<T extends UnknownObj>({
         </Portal>
       </Stack>
     ),
-    [handleClick, handleSubmit, onSubmit, open, searchContainer, watchMode]
+    [
+      handleClick,
+      handleReset,
+      handleSubmit,
+      onSubmit,
+      open,
+      searchContainer,
+      watchMode,
+    ]
   );
 
   const SearchItemContainer: React.FC<ChildrenProps> = useCallback(

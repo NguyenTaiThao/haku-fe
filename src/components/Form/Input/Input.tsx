@@ -4,12 +4,16 @@ import { FormControlProps, OutlinedInputProps } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useState } from "react";
-import { useController, UseControllerProps } from "react-hook-form";
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from "react-hook-form";
 import { AdditionInputProps, InputStyled } from "../components/InputStyled";
 import React from "react";
 import { AddControlProps, InputControl } from "../components";
 
-export type InputProps<T> = UseControllerProps<T> &
+export type InputProps<T extends FieldValues> = UseControllerProps<T> &
   OutlinedInputProps &
   AddControlProps &
   AdditionInputProps & {
@@ -18,7 +22,7 @@ export type InputProps<T> = UseControllerProps<T> &
     endAdornment?: React.ReactNode;
   };
 
-function Input<T>({
+function Input<T extends FieldValues>({
   name,
   control,
   defaultValue,
