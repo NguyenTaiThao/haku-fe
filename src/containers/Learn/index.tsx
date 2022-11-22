@@ -69,7 +69,7 @@ export default function Learn() {
           md={10}
           sx={{ overflow: "hidden", background: "#999" }}
         >
-          <Stack alignItems="center" spacing={2}>
+          <Stack alignItems="center" spacing={2} py={2}>
             <CardNumber position={currentCardIndex + 1} total={cards.length} />
             <Card
               setHandleFlip={setHandleFlip}

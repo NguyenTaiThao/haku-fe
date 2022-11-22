@@ -23,11 +23,16 @@ export default function Navigators({
           aria-label="upload picture"
           component="label"
           onClick={handlePrevious}
+          sx={{ backgroundColor: "#fff" }}
         >
           <KeyboardBackspaceIcon />
         </IconButton>
 
-        <IconButton color="primary" onClick={() => handleFlip()}>
+        <IconButton
+          color="primary"
+          onClick={() => handleFlip()}
+          sx={{ backgroundColor: "#fff" }}
+        >
           <FlipIcon />
         </IconButton>
 
@@ -36,6 +41,7 @@ export default function Navigators({
           aria-label="upload picture"
           component="label"
           onClick={handleNext}
+          sx={{ backgroundColor: "#fff" }}
         >
           <ArrowRightAltIcon />
         </IconButton>

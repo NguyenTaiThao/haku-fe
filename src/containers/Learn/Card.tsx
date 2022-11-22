@@ -36,7 +36,13 @@ export default function Card({ setHandleFlip, card, cards }: PropTypes) {
 
   return (
     <>
-      <Box sx={{ position: "relative", width: "800px", height: "500px" }}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "800px",
+          height: "500px",
+        }}
+      >
         {cards &&
           cards.map((item) => (
             <Slide
@@ -57,10 +63,12 @@ export default function Card({ setHandleFlip, card, cards }: PropTypes) {
                     height: "500px",
                   }}
                 >
-                  <FrontSide style={{ background: "#fff" }}>
+                  <FrontSide
+                    style={{ background: "#fff", borderRadius: "5px" }}
+                  >
                     <FrontSideContent content={card?.front_content} />
                   </FrontSide>
-                  <BackSide style={{ background: "#fff" }}>
+                  <BackSide style={{ background: "#fff", borderRadius: "5px" }}>
                     <BackSideContent content={card?.back_content} />
                   </BackSide>
                 </Flippy>

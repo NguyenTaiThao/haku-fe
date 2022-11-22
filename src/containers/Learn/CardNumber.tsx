@@ -8,7 +8,7 @@ type PropTypes = {
 
 export default function CardNumber({ position, total }: PropTypes) {
   return (
-    <Box sx={{ textAlign: "center" }}>
+    <Box sx={{ textAlign: "center", color: "white" }}>
       {position}/{total}
     </Box>
   );
