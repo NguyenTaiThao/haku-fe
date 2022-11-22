@@ -11,12 +11,14 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import QuizIcon from "@mui/icons-material/Quiz";
 import StopIcon from "@mui/icons-material/Stop";
+import { SetType } from "lib/types";
 
 type ProsType = {
   handleShuffle?: () => void;
   handleAutoPlay: () => () => void;
   handleQuiz?: () => void;
   isRunning: boolean;
+  setInfo: SetType | undefined;
 };
 
 export default function ExtensionBar({
@@ -24,6 +26,7 @@ export default function ExtensionBar({
   handleAutoPlay,
   handleQuiz,
   isRunning,
+  setInfo
 }: ProsType) {
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [clearInterval, setClearInterval] = useState<() => void>(
@@ -50,9 +53,9 @@ export default function ExtensionBar({
         justifyContent: "center",
       }}
     >
-      <h2>Set 1</h2>
+      <h2>{setInfo?.name}</h2>
       <Typography variant="body1" sx={{ pb: 5 }}>
-        this is a description
+        {setInfo?.description}
       </Typography>
       <CircularProgressWithLabel value={100}></CircularProgressWithLabel>
 

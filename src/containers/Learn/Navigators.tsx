@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Box, IconButton, Stack } from "@mui/material";
@@ -15,6 +15,27 @@ export default function Navigators({
   handleNext,
   handlePrevious,
 }: PropTypes) {
+
+  
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === "ArrowRight") {
+      handleNext();
+    }
+    else if (event.key === "ArrowLeft") {
+      handlePrevious();
+    }
+    else if (event.key === "ArrowUp") {
+      handleFlip();
+    }
+  },[handleNext, handlePrevious, handleFlip])
+  
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown, false);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown, false);
+    }
+  },[handleKeyDown])
+
   return (
     <Box>
       <Stack direction="row" spacing={2}>

@@ -1,7 +1,7 @@
 import { Grid, Stack } from "@mui/material";
 import { CardType, SetType } from "lib/types";
 import { shuffle } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Card from "./Card";
 import CardNumber from "./CardNumber";
@@ -24,19 +24,22 @@ export default function Learn() {
     }
   }, [setData, setCards]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentCardIndex((value) => {
-      if (value < cards.length - 1) return value + 1;
-      else return 0;
+      let index
+      if (value < cards.length - 1) index = value + 1;
+      else index = 0;
+      console.log(value, index, cards.length  );
+      return index
     });
-  };
-
-  const handlePrevious = () => {
+  }, [cards]);
+  
+  const handlePrevious = useCallback(() => {
     setCurrentCardIndex((value) => {
       if (value > 0) return value - 1;
       else return cards.length - 1;
     });
-  };
+  }, [cards]);
 
   const handleShuffle = () => {
     setIsShuffling(true);
@@ -78,6 +81,7 @@ export default function Learn() {
             handleShuffle={handleShuffle}
             isRunning={isShuffling}
             handleAutoPlay={handleAutoPlay}
+            setInfo={setData}
           />
         </Grid>
         <Grid
