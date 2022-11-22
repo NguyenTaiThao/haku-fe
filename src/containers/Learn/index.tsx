@@ -25,19 +25,17 @@ export default function Learn() {
   }, [setData, setCards]);
 
   const handleNext = () => {
-    if (currentCardIndex < cards.length - 1) {
-      setCurrentCardIndex(currentCardIndex + 1);
-    } else {
-      setCurrentCardIndex(0);
-    }
+    setCurrentCardIndex((value) => {
+      if (value < cards.length - 1) return value + 1;
+      else return 0;
+    });
   };
 
   const handlePrevious = () => {
-    if (currentCardIndex > 0) {
-      setCurrentCardIndex(currentCardIndex - 1);
-    } else {
-      setCurrentCardIndex(cards.length - 1);
-    }
+    setCurrentCardIndex((value) => {
+      if (value > 0) return value - 1;
+      else return cards.length - 1;
+    });
   };
 
   const handleShuffle = () => {
@@ -51,6 +49,21 @@ export default function Learn() {
     }, 500);
   };
 
+  const handleAutoPlay = () => {
+    handleNext();
+    setTimeout(() => {
+      handleFlip();
+    }, 2500);
+
+    const timer = setInterval(() => {
+      handleNext();
+      setTimeout(() => {
+        handleFlip();
+      }, 1000);
+    }, 5000);
+    return () => clearInterval(timer);
+  };
+
   useEffect(() => {
     setCurrentCard(cards[currentCardIndex]);
     console.log(currentCardIndex);
@@ -61,7 +74,11 @@ export default function Learn() {
       <h1>Learn</h1>
       <Grid container>
         <Grid item xs={12} md={2}>
-          <ExtensionBar handleShuffle={handleShuffle} isRunning={isShuffling} />
+          <ExtensionBar
+            handleShuffle={handleShuffle}
+            isRunning={isShuffling}
+            handleAutoPlay={handleAutoPlay}
+          />
         </Grid>
         <Grid
           item

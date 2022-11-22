@@ -6,24 +6,41 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import QuizIcon from "@mui/icons-material/Quiz";
+import StopIcon from "@mui/icons-material/Stop";
 
 type ProsType = {
   handleShuffle?: () => void;
-  handlePlay?: () => void;
+  handleAutoPlay: () => () => void;
   handleQuiz?: () => void;
   isRunning: boolean;
 };
 
 export default function ExtensionBar({
   handleShuffle,
-  handlePlay,
+  handleAutoPlay,
   handleQuiz,
   isRunning,
 }: ProsType) {
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [clearInterval, setClearInterval] = useState<() => void>(
+    () => () => {}
+  );
+
+  const startAutoPlay = () => {
+    setIsAutoPlaying(true);
+    const clearer = handleAutoPlay();
+    setClearInterval(() => clearer);
+  };
+
+  const stopAutoPlay = () => {
+    clearInterval();
+    setIsAutoPlaying(false);
+  };
+
   return (
     <Box
       sx={{
@@ -44,9 +61,17 @@ export default function ExtensionBar({
           <ShuffleIcon sx={{ mr: 1 }} />
           Shuffle
         </Button>
-        <Button variant="outlined" disabled={isRunning}>
-          <PlayArrowIcon sx={{ mr: 1 }} />
-          Auto Play
+        <Button
+          variant="outlined"
+          disabled={isRunning}
+          onClick={isAutoPlaying ? stopAutoPlay : startAutoPlay}
+        >
+          {isAutoPlaying ? (
+            <StopIcon sx={{ mr: 1 }} />
+          ) : (
+            <PlayArrowIcon sx={{ mr: 1 }} />
+          )}
+          {isAutoPlaying ? "Stop" : "Auto Play"}
         </Button>
         <Button variant="outlined" disabled={isRunning}>
           <QuizIcon sx={{ mr: 1 }} />
