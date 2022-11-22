@@ -1,6 +1,7 @@
 import { Grid, Stack } from "@mui/material";
 import { CardType, SetType } from "lib/types";
-import React, { useEffect, useRef, useState } from "react";
+import { shuffle } from "lodash";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Card from "./Card";
 import CardNumber from "./CardNumber";
@@ -9,6 +10,7 @@ import Navigators from "./Navigators";
 
 export default function Learn() {
   const [cards, setCards] = useState<SetType["cards"]>([]);
+  const [isShuffling, setIsShuffling] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [currentCard, setCurrentCard] = useState<CardType | undefined>();
   const [handleFlip, setHandleFlip] = useState<() => void>(() => () => {});
@@ -38,6 +40,17 @@ export default function Learn() {
     }
   };
 
+  const handleShuffle = () => {
+    setIsShuffling(true);
+    const shuffledCards = shuffle(cards);
+    setCards(shuffledCards);
+    handleNext();
+    setTimeout(() => {
+      handlePrevious();
+      setIsShuffling(false);
+    }, 500);
+  };
+
   useEffect(() => {
     setCurrentCard(cards[currentCardIndex]);
     console.log(currentCardIndex);
@@ -48,7 +61,7 @@ export default function Learn() {
       <h1>Learn</h1>
       <Grid container>
         <Grid item xs={12} md={2}>
-          <ExtensionBar />
+          <ExtensionBar handleShuffle={handleShuffle} isRunning={isShuffling} />
         </Grid>
         <Grid
           item
