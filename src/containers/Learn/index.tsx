@@ -1,4 +1,5 @@
 import { Grid, Stack } from "@mui/material";
+import { request } from "lib/request";
 import { CardType, SetType } from "lib/types";
 import { shuffle } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
@@ -9,17 +10,35 @@ import CardNumber from "./CardNumber";
 import ExtensionBar from "./ExtensionBar";
 import Navigators from "./Navigators";
 
+export const FILTER = {
+  ALL: 1,
+  REMEMBERED: 2,
+  UNREMEMBERED: 3,
+} as const;
+
 export default function Learn() {
   const [cards, setCards] = useState<SetType["cards"]>([]);
   const [isShuffling, setIsShuffling] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
   const [currentCard, setCurrentCard] = useState<CardType | undefined>();
   const [handleFlip, setHandleFlip] = useState<() => void>(() => () => {});
+  const [progress, setProgress] = useState(0);
+  const [filter, setFilter] = useState<number>(FILTER.ALL);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
 
   const params = useParams();
-  const {id} = params as {id: number};
+  const { id } = params as { id: number };
 
-  const { data: setData } = useQuery<SetType>(`sets/${id}`);
+  const { data: setData, refetch } = useQuery<SetType>(`sets/${id}`, {
+    refetchOnMount: true,
+  });
+
+  useEffect(() => {
+    if (cards.length > 0) {
+      const rememberedNum = cards.filter((card) => card.is_remembered).length;
+      setProgress((rememberedNum / cards.length) * 100);
+    }
+  }, [cards]);
 
   useEffect(() => {
     if (setData) {
@@ -30,20 +49,58 @@ export default function Learn() {
 
   const handleNext = useCallback(() => {
     setCurrentCardIndex((value) => {
-      let index
+      let index;
       if (value < cards.length - 1) index = value + 1;
       else index = 0;
-      console.log(value, index, cards.length  );
-      return index
+      console.log(value, index, cards.length);
+      return index;
     });
   }, [cards]);
-  
+
   const handlePrevious = useCallback(() => {
     setCurrentCardIndex((value) => {
       if (value > 0) return value - 1;
       else return cards.length - 1;
     });
   }, [cards]);
+
+  useEffect(() => {
+    let filtered = [] as SetType["cards"] | undefined;
+    refetch();
+    switch (filter) {
+      case FILTER.ALL:
+        filtered = setData?.cards;
+        break;
+      case FILTER.REMEMBERED:
+        filtered = setData?.cards.filter((card) => !!card?.is_remembered);
+        break;
+      case FILTER.UNREMEMBERED:
+        filtered = setData?.cards.filter((card) => !card?.is_remembered);
+        break;
+    }
+    setCards(filtered || []);
+    setCurrentCardIndex(0);
+  }, [filter, setData]);
+
+  const toggleRemember = useCallback(
+    async (id: number) => {
+      try {
+        const res = await request.post(`card/toggle-remember/${id}`);
+        const newCards = cards.map((card) =>
+          card.id === id
+            ? { ...card, is_remembered: !card.is_remembered }
+            : card
+        );
+
+        setCards(newCards);
+
+        handleNext();
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    [handleNext]
+  );
 
   const handleShuffle = () => {
     setIsShuffling(true);
@@ -86,6 +143,9 @@ export default function Learn() {
             isRunning={isShuffling}
             handleAutoPlay={handleAutoPlay}
             setInfo={setData}
+            progress={progress}
+            isAutoPlaying={isAutoPlaying}
+            setIsAutoPlaying={setIsAutoPlaying}
           />
         </Grid>
         <Grid
@@ -100,11 +160,16 @@ export default function Learn() {
               setHandleFlip={setHandleFlip}
               card={currentCard}
               cards={cards}
+              setFilter={setFilter}
+              filter={filter}
             />
             <Navigators
               handleFlip={handleFlip}
               handleNext={handleNext}
               handlePrevious={handlePrevious}
+              toggleRemember={toggleRemember}
+              currentCard={currentCard}
+              isAutoPlaying={isAutoPlaying}
             />
           </Stack>
         </Grid>

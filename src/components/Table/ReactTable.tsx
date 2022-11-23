@@ -182,7 +182,7 @@ function ReactTableWithRef<T extends object>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gotoPage, paginationMeta, setPageSize]);
 
-  if (loading && !data.length) {
+  if (loading) {
     return <TableSkeleton {...skeletonConfig} />;
   }
 

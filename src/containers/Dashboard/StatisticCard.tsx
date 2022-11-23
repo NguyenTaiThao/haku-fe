@@ -1,38 +1,51 @@
 import { makeStyles } from "@material-ui/core";
-import { Grid, Stack, Typography } from "@mui/material";
+import { CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import FolderIcon from "@mui/icons-material/Folder";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import RuleFolderIcon from '@mui/icons-material/RuleFolder';
-
-type ProjectTotalProps = {
-  upcoming: number;
-  ongoing: number;
-  launched: number;
-};
+import RuleFolderIcon from "@mui/icons-material/RuleFolder";
+import { useQuery } from "react-query";
+import { DashboardDataType } from "lib/types";
 
 export const StatisticCard: React.FC = () => {
   const classes = useStyles();
 
+  const { data: statisticsData, isFetching } = useQuery<DashboardDataType>(
+    `statistics`
+  );
+
   const dataShow = useMemo(() => {
     return [
       {
-        label: "Number of sets",
-        value: 0,
+        label: "Sets",
+        value: statisticsData?.set_num ?? 0,
         type: "all",
       },
       {
-        label: "Number of ongoing sets",
-        value: 0,
+        label: "Ongoing sets",
+        value: statisticsData?.ongoing_set_num ?? 0,
         type: "running",
       },
       {
-        label: "Number of unlearned sets",
-        value: 0,
+        label: "Unlearned sets",
+        value: statisticsData?.unlearned_set_num ?? 0,
         type: "upcoming",
       },
     ];
-  }, []);
+  }, [statisticsData]);
+
+  const getIcon = (type: string) => {
+    switch (type) {
+      case "all":
+        return <FolderIcon className={classes.fontSizeIcon} />;
+      case "running":
+        return <LocalLibraryIcon className={classes.fontSizeIcon} />;
+      case "upcoming":
+        return <RuleFolderIcon className={classes.fontSizeIcon} />;
+      default:
+        return <FolderIcon className={classes.fontSizeIcon} />;
+    }
+  };
 
   return (
     <Grid container spacing={2}>
@@ -47,16 +60,14 @@ export const StatisticCard: React.FC = () => {
                 alignItems="center"
                 sx={{ marginBottom: "20px" }}
               >
-                {data.type === "all" && (
-                  <FolderIcon className={classes.fontSizeIcon} />
+                {getIcon(data.type)}
+                {!isFetching ? (
+                  <Typography className={classes.value}>
+                    {data.value}
+                  </Typography>
+                ) : (
+                  <CircularProgress size={30} />
                 )}
-                {data.type === "running" && (
-                  <LocalLibraryIcon className={classes.fontSizeIcon} />
-                )}
-                {data.type === "upcoming" && (
-                  <RuleFolderIcon className={classes.fontSizeIcon} />
-                )}
-                <Typography className={classes.value}>{data.value}</Typography>
               </Stack>
             </Stack>
           </Grid>

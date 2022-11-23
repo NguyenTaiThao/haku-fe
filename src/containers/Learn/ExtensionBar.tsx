@@ -19,6 +19,9 @@ type ProsType = {
   handleQuiz?: () => void;
   isRunning: boolean;
   setInfo: SetType | undefined;
+  progress: number;
+  isAutoPlaying: boolean;
+  setIsAutoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ExtensionBar({
@@ -27,8 +30,10 @@ export default function ExtensionBar({
   handleQuiz,
   isRunning,
   setInfo,
+  progress,
+  isAutoPlaying,
+  setIsAutoPlaying,
 }: ProsType) {
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [clearInterval, setClearInterval] = useState<() => void>(
     () => () => {}
   );
@@ -57,7 +62,7 @@ export default function ExtensionBar({
       <Typography variant="body1" sx={{ pb: 5 }}>
         {setInfo?.description}
       </Typography>
-      <CircularProgressWithLabel value={100}></CircularProgressWithLabel>
+      <CircularProgressWithLabel value={progress}></CircularProgressWithLabel>
 
       <Stack sx={{ mt: 10 }} spacing={2}>
         <Button

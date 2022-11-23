@@ -5,4 +5,5 @@ export type CardType = {
   created_at: string;
   updated_at: string;
   set_id: number;
+  is_remembered: boolean;
 };

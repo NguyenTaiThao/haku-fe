@@ -22,7 +22,6 @@ function usePaginationQuery<T>(
     Pagination<T>
   >([endpoint, { ...meta, ..._params, ...params }], {
     keepPreviousData: true,
-    staleTime: 10000,
     enabled,
   });
 
