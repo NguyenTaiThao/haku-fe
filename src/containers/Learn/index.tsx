@@ -3,6 +3,7 @@ import { CardType, SetType } from "lib/types";
 import { shuffle } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 import Card from "./Card";
 import CardNumber from "./CardNumber";
 import ExtensionBar from "./ExtensionBar";
@@ -15,7 +16,10 @@ export default function Learn() {
   const [currentCard, setCurrentCard] = useState<CardType | undefined>();
   const [handleFlip, setHandleFlip] = useState<() => void>(() => () => {});
 
-  const { data: setData } = useQuery<SetType>(`sets/${1}`);
+  const params = useParams();
+  const {id} = params as {id: number};
+
+  const { data: setData } = useQuery<SetType>(`sets/${id}`);
 
   useEffect(() => {
     if (setData) {

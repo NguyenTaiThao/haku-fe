@@ -40,7 +40,6 @@ export default function Index() {
         refetch();
       } catch (error) {
         toast.error("Failed");
-        console.log(error);
       }
     },
     [deleteApi, dialog, refetch]
@@ -55,7 +54,7 @@ export default function Index() {
 
   const onRowClick = useCallback(
     ({ original }: Row<SetType>) => {
-      history.push("/sets/update/" + original.id);
+      history.push("/learn/" + original.id);
     },
     [history]
   );

@@ -1,9 +1,9 @@
 import { Dashboard } from "containers/Dashboard";
 import { lazy } from "react";
 
-const Home = lazy(() => import("containers/Home"));
 const SetList = lazy(() => import("containers/Set/List"));
 const Learn = lazy(() => import("containers/Learn"));
+const Learning = lazy(() => import("containers/Learning"));
 const SetCreate = lazy(() => import("containers/Set/Create"));
 const SetUpdate = lazy(() => import("containers/Set/Update"));
 
@@ -34,11 +34,17 @@ export function UserRoutes() {
       name: "Update Set",
     },
     {
-      path: "/learn",
+      path: "/learn/:id",
       component: Learn,
       protected: true,
       name: "Learn",
     },
+    {
+      path: "/learning",
+      component: Learning,
+      protected: true,
+      name: "Learning",
+    }
   ];
 
   return { userRoutes };

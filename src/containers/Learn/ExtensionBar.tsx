@@ -26,7 +26,7 @@ export default function ExtensionBar({
   handleAutoPlay,
   handleQuiz,
   isRunning,
-  setInfo
+  setInfo,
 }: ProsType) {
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [clearInterval, setClearInterval] = useState<() => void>(
@@ -60,7 +60,11 @@ export default function ExtensionBar({
       <CircularProgressWithLabel value={100}></CircularProgressWithLabel>
 
       <Stack sx={{ mt: 10 }} spacing={2}>
-        <Button variant="outlined" onClick={handleShuffle} disabled={isRunning}>
+        <Button
+          variant="outlined"
+          onClick={handleShuffle}
+          disabled={isRunning || isAutoPlaying}
+        >
           <ShuffleIcon sx={{ mr: 1 }} />
           Shuffle
         </Button>
@@ -76,7 +80,7 @@ export default function ExtensionBar({
           )}
           {isAutoPlaying ? "Stop" : "Auto Play"}
         </Button>
-        <Button variant="outlined" disabled={isRunning}>
+        <Button variant="outlined" disabled={isRunning || isAutoPlaying}>
           <QuizIcon sx={{ mr: 1 }} />
           Quiz Game
         </Button>
