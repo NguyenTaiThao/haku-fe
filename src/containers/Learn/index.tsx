@@ -1,4 +1,5 @@
 import { Grid, Stack } from "@mui/material";
+import { useModalState } from "lib/hooks";
 import { request } from "lib/request";
 import { CardType, SetType } from "lib/types";
 import { shuffle } from "lodash";
@@ -9,6 +10,7 @@ import Card from "./Card";
 import CardNumber from "./CardNumber";
 import ExtensionBar from "./ExtensionBar";
 import Navigators from "./Navigators";
+import QuizGameModal from "./QuizGameModal";
 
 export const FILTER = {
   ALL: 1,
@@ -25,6 +27,8 @@ export default function Learn() {
   const [progress, setProgress] = useState(0);
   const [filter, setFilter] = useState<number>(FILTER.ALL);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+
+  const { isOpen, onOpen, onClose, onToggle } = useModalState(true);
 
   const params = useParams();
   const { id } = params as { id: number };
@@ -146,6 +150,7 @@ export default function Learn() {
             progress={progress}
             isAutoPlaying={isAutoPlaying}
             setIsAutoPlaying={setIsAutoPlaying}
+            handleQuiz={onOpen}
           />
         </Grid>
         <Grid
@@ -174,6 +179,11 @@ export default function Learn() {
           </Stack>
         </Grid>
       </Grid>
+      <QuizGameModal
+        isOpen={isOpen}
+        onClose={onClose}
+        cardNumber={setData?.card_count}
+      />
     </div>
   );
 }

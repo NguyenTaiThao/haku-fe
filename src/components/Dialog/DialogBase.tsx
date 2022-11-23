@@ -29,7 +29,6 @@ const DialogBase: React.FC<DialogBaseProps> = ({
       open={open}
       fullWidth
       fullHeight={fullHeight}
-      onClose={onClose}
       maxWidth="md"
       {...props}
     >

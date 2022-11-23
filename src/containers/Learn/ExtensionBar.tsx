@@ -16,7 +16,7 @@ import { SetType } from "lib/types";
 type ProsType = {
   handleShuffle?: () => void;
   handleAutoPlay: () => () => void;
-  handleQuiz?: () => void;
+  handleQuiz: () => void;
   isRunning: boolean;
   setInfo: SetType | undefined;
   progress: number;
@@ -85,7 +85,13 @@ export default function ExtensionBar({
           )}
           {isAutoPlaying ? "Stop" : "Auto Play"}
         </Button>
-        <Button variant="outlined" disabled={isRunning || isAutoPlaying}>
+        <Button
+          variant="outlined"
+          onClick={() => handleQuiz()}
+          disabled={
+            isRunning || isAutoPlaying || Number(setInfo?.card_count) <= 4
+          }
+        >
           <QuizIcon sx={{ mr: 1 }} />
           Quiz Game
         </Button>
