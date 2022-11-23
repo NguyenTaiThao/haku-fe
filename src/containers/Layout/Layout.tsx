@@ -41,9 +41,9 @@ const Layout = React.memo((props) => {
       path: "/sets",
     },
     {
-      label: "Learn",
+      label: "Learning",
       icon: <LocalLibrarySharpIcon />,
-      path: "/learn",
+      path: "/learning",
     },
   ];
 
