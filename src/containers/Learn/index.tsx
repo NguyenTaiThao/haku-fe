@@ -28,7 +28,7 @@ export default function Learn() {
   const [filter, setFilter] = useState<number>(FILTER.ALL);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
 
-  const { isOpen, onOpen, onClose } = useModalState(true);
+  const { isOpen, onOpen, onClose } = useModalState(false);
 
   const params = useParams();
   const { id } = params as { id: number };

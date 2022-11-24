@@ -14,7 +14,7 @@ export default function ResultScreen({
   handleClose: () => void;
   handleReset: () => void;
 }) {
-  const percentage = (points / questionNum) * 100;
+  const percentage = Math.floor((points / questionNum) * 10 ** 4) / 100;
   const isPassed = percentage > PASS_PERCENTAGE;
 
   const handleRestart = () => {

@@ -27,7 +27,7 @@ export default function QuizGameModal({
 }: PropTypes) {
   const [questionNum, setQuestionNum] = useState(0);
   const [points, setPoints] = useState(0);
-  const [stage, setStage] = useState(STAGES.finished);
+  const [stage, setStage] = useState(STAGES.preStart);
   const [questions, setQuestion] = useState<QuestionType[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 

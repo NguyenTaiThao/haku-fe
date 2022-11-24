@@ -6,6 +6,7 @@ import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import RuleFolderIcon from "@mui/icons-material/RuleFolder";
 import { useQuery } from "react-query";
 import { DashboardDataType } from "lib/types";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 
 export const StatisticCard: React.FC = () => {
   const classes = useStyles();
@@ -20,6 +21,11 @@ export const StatisticCard: React.FC = () => {
         label: "Sets",
         value: statisticsData?.set_num ?? 0,
         type: "all",
+      },
+      {
+        label: "Learned sets",
+        value: statisticsData?.learned_set_num ?? 0,
+        type: "finished",
       },
       {
         label: "Ongoing sets",
@@ -42,6 +48,8 @@ export const StatisticCard: React.FC = () => {
         return <LocalLibraryIcon className={classes.fontSizeIcon} />;
       case "upcoming":
         return <RuleFolderIcon className={classes.fontSizeIcon} />;
+      case "finished":
+        return <BookmarkAddedIcon className={classes.fontSizeIcon} />;
       default:
         return <FolderIcon className={classes.fontSizeIcon} />;
     }
@@ -51,7 +59,7 @@ export const StatisticCard: React.FC = () => {
     <Grid container spacing={2}>
       {dataShow.map((data, index: number) => {
         return (
-          <Grid item xs={12} md={4} key={index}>
+          <Grid item xs={12} md={3} key={index}>
             <Stack className={classes.containerCard}>
               <Typography className={classes.label}>{data.label}</Typography>
               <Stack
