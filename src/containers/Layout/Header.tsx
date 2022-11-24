@@ -228,7 +228,7 @@ export default function Header(props: any) {
               disableRestoreFocus
             >
               <Typography style={{ padding: 8 }} onClick={() => logout()}>
-                Logout
+                {t("header.logout")}
               </Typography>
             </Popover>
             <Popover

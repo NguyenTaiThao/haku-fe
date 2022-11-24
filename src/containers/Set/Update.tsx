@@ -11,6 +11,7 @@ import { useApiResource } from "lib/hooks";
 import { LoadingButton } from "@mui/lab";
 import { useHistory, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -87,9 +88,11 @@ export default function Create() {
     history.push("/sets");
   };
 
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1>Update Your Set</h1>
+      <h1>{t("set.update_set")}</h1>
 
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
         <Grid container mb={3}>
@@ -150,7 +153,7 @@ export default function Create() {
                 size="large"
                 loading={isSubmitting}
               >
-                Save
+                {t("set.save")}
               </LoadingButton>
             </Stack>
           </Grid>

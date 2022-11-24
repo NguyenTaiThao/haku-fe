@@ -31,12 +31,12 @@ const Layout = React.memo((props) => {
 
   const sidebarUser = [
     {
-      label: "Home",
+      label: "menu.home",
       icon: <HomeIcon />,
       path: "/",
     },
     {
-      label: "Sets",
+      label: "menu.sets",
       icon: <FolderCopySharpIcon />,
       path: "/sets",
     },

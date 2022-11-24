@@ -5,6 +5,7 @@ import { UnknownObj } from "lib/types";
 import { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { FilterBar, FilterBarProps } from "./Table/components/FilterBar";
+import { useTranslation } from "react-i18next";
 
 export type HeaderProps<T extends UnknownObj> = FilterBarProps<T> & {
   path?: string;
@@ -21,6 +22,7 @@ function TopHeader<T extends UnknownObj>({
   hasCreate = true,
 }: HeaderProps<T>) {
   const history = useHistory();
+  const { t } = useTranslation();
 
   const handleCreate = () => {
     history.push(path as string);
@@ -47,7 +49,7 @@ function TopHeader<T extends UnknownObj>({
             onClick={handleCreate}
             sx={{ width: 120 }}
           >
-            Create
+            {t("set.create")}
           </Button>
         )}
 

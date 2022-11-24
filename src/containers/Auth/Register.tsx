@@ -16,6 +16,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface Error {
   status: number;
@@ -126,6 +127,7 @@ export default function Register() {
   }, [admin]);
 
   const { updateAdminToken, updateAdmin } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const {
     control,
@@ -183,7 +185,7 @@ export default function Register() {
                     <Input
                       fullWidth
                       name="email"
-                      label="Email"
+                      label={t("auth.email")}
                       control={control}
                       sx={{
                         backgroundColor: "#000",
@@ -204,7 +206,7 @@ export default function Register() {
                     <Input
                       fullWidth
                       name="password"
-                      label="Password"
+                      label={t("auth.password")}
                       type="password"
                       control={control}
                       sx={{
@@ -229,7 +231,7 @@ export default function Register() {
                     <Input
                       fullWidth
                       name="repassword"
-                      label="Password confirmation"
+                      label={t("auth.password_confirmation")}
                       type="password"
                       control={control}
                       sx={{
@@ -269,7 +271,7 @@ export default function Register() {
                       marginTop: 18,
                     }}
                   >
-                    Register
+                    {t("auth.register")}
                   </Button>
                 </Grid>
                 <Grid mt={5}>
@@ -279,9 +281,9 @@ export default function Register() {
                     align="center"
                     style={{ color: "#fff" }}
                   >
-                    {"Already have an account? "}
+                    {t("auth.already_registered")}
                     <Link to="/login" style={{ color: "#00F0FF" }}>
-                      Sign in
+                      {t("auth.here")}
                     </Link>
                   </Typography>
                 </Grid>

@@ -1,222 +1,42 @@
 {
-  "content": {
-    "functional": "Functional",
-    "class": "Class",
-    "text": "This is text"
-  },
   "header": {
-    "home": "ホーム",
-    "become_affiliator": "アフィリエイターになる",
-    "become_sponsor": "スポンサーになる",
-    "Project": "プロジェクト",
-    "My_performance": "マイパフォーマンス",
-    "About_us": "会社概要",
-    "Login": "ログイン",
-    "Change_Information": "情報を変更する",
-    "Logout": "ログアウト",
-    "Update_Information": "アップデート情報",
-    "country": "国"
+    "login": "サインイン",
+    "logout": "サインアウト"
   },
-  "footer": {
-    "Address": "住所",
-    "Email": "メールアドレス",
-    "Telegram": "テレグラム",
-    "Website": "ウェブサイト",
-    "back": "©2022 版権所有 https://bitbull.online"
+  "menu": {
+    "home": "ホーム",
+    "sets": "セット"
+  },
+  "auth": {
+    "login": "サインイン",
+    "register": "サインアップ",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "password_confirmation": "パスワード確認",
+    "already_registered": "すでにアカウントをお持ちの方は",
+    "not_registered": "アカウントをお持ちでない方は",
+    "here": "こちら"
   },
   "home": {
-    "title": "インフルエンサーの支援を受けた初のLaunchpadは、プロジェクトに大規模なグローバル露出を提供し、パフォーマンスを向上させることができます。",
-    "Total_Amount": "合計金額",
-    "Unclaim_number": "未請求分",
-    "Last_year": "昨年度",
-    "Your_name": "名前",
-    "Type_your_name": "名前を入力してください",
-    "Your_Email": "メールアドレス",
-    "Type_your_email": "メールアドレスを入力してください",
-    "Your_Telegram_name": "テレグラム名",
-    "Type_your_Telegram": "テレグラムを入力してください",
-    "Message": "メッセージ",
-    "place_message": "知りたいことを入力してください。",
-    "Submit_project": "プロジェクトを決定する",
-    "Project_name": "プロジェクト名",
-    "Type_your_Project_name": "プロジェクト名を入力します",
-    "Your_Project_website": "プロジェクトのウェブサイト",
-    "Type_your_Project_website": "プロジェクトのWebサイトを入力します",
-    "Not_empty": "この欄は入力必須です。",
-    "bitbull_description": "Bitbull は、Web 3.0 に特化した ASP サービスです。 Bitbull を使用すると、あなたのプロジェクトが注目され、さまざまなアフィリエイトに紹介されます! WEB 2.0とは異なり、すべての報酬がリアルタイムで配信され、銀行口座は不要で、プロジェクトオーナーとアフィリエイトの両方がSNSアカウントとウォレットだけで参加できます。",
-    "learn": "学び",
-    "get_start": "スタートを切る",
-    "power_by": "パワーバイ",
-    "sell_token": "トークンを売る",
-    "sell_nft": "NFTを売る",
-    "various": "各種資金調達が可能",
-    "what_is_bitbull": "ビットブルとは？",
-    "up_coming": "今後",
-    "total_supply": "総供給量",
-    "token_sale": "トークンセール",
-    "affiliator1": "アフィリエイト用リンクはクリック1回で生成。",
-    "affiliator2": "報酬はリアルタイムで配布され、個人情報や銀行口座は必要ありません。",
-    "affiliator3": "Tier2との互換性。",
-    "affiliator4": "あなたの報酬はあなたが紹介したアフィリエイターの売り上げによって増加します。",
-    "project1": "100人のプロモーターにアピールすることができます。",
-    "project2": "これまで時間がかかっていた様々なプロモーターとの打ち合わせが不要になりました。",
-    "project3": "連動すしたウォレットにリアルタイムで報酬を配布します。",
-    "learn_more": "もっと詳しく知る",
-    "affiliate": "アフィリエイト",
-    "fundraise_goal": "募金目標",
-    "max_allocation": "最大割り当て",
-    "using": "既に登録されています。"
+    "title": "ホーム",
+    "sets": "セット",
+    "learned_sets": "学習済みセット",
+    "ongoing_sets": "学習中セット",
+    "not_started_sets": "未学習セット"
   },
-  "becomeSponsor": {
-    "First_name": "名",
-    "Type_your_first_name": "名前を入力してください",
-    "Last_name": "性",
-    "Type_your_last_name": "性を入力してください",
-    "Email": "メールアドレス",
-    "Type_your_email_here": "ここにメールアドレスを入力してください。",
-    "Social_Telegram": "ソーシャル - テレグラム",
-    "Message": "メッセージ",
-    "Type_your_message": "メッセージを入力してください",
-    "more_info": "For more information about our privacy practices, check out our",
-    "Privacy Policy": "プライバシーポリシー",
-    "description": "以下の「送信」をクリックすることにより、お客様は、お客様から提供された情報を、お問い合わせの目的のために、当社のポリシー条項に従って処理し、保存することに同意されたものとします。",
-    "Submit": "決定"
-  },
-  "notiRegister":{
-    "notification":"登録が完了しました。ログイン アカウントに関する情報については、電子メールを確認してください。",
-    "home": "ホーム",
-    "login" : "Login as Sponsor"
-  },
-  "myPerformance": {
-    "My_project": "マイプロジェクト",
-    "Reward": "報酬",
-    "Claim": "クレーム",
-    "pending": "保留",
-    "history": "請求記録",
-    "project_id": "プロジェクト名",
-    "claim_amount": "請求総額",
-    "claim_at": "請求日時",
-    "total_reward": "報酬",
-    "unclaim_amount": "未請求報酬",
-    "loading": "充填...",
-    "transaction_tx": "トランザクション TX",
-    "amount_buy": "購入量",
-    "earning": "収益",
-    "purchase_time": "購入時間"
-  },
-  "project": {
-    "confirm_amount": "金額確認",
-    "Invite_friend": "友達を招待する",
-    "results":"結果",
-    "items":"項目",
-    "Sort":"フィルター",
-    "All": "全てのプロジェクト",
-    "Launched": "終了しました",
-    "Upcoming": "公開予定",
-    "Ongoing": "進行中のプロジェクト"
-  },
-  "project_new": {
-    "token_sale": "トークンセール",
-    "SNS_promotion": "SNSプロモーション",
-    "White_list":"White list",
-    "Launched": "終了しました",
-    "Upcoming": "公開予定",
-    "Ongoing": "進行中のプロジェクト" 
-  },
-  "sns_card": {
-    "total_price": "合計価格",
-    "due_date": "予定日",
-    "posted": "投稿しました"
-    
-  },
-  "token_Sale": {
-    "All": "全てのプロジェクト",
-    "Launched": "終了しました",
-    "Upcoming": "公開予定",
-    "Ongoing": "進行中のプロジェクト"
-  },
-  "sns_promotion": {
-    "ListJobs": "ジョブの一覧表示",
-    "Bidding": "価格提案",
-    "Ongoing": "進行中のプロジェクト",
-    "History_Tasks": "ヒストリータスク"
-  },
-  "project_detail": {
-    "Go_ack": "戻る",
-    "JOIN": "加入",
-    "Total_Amount_sold": "IDOの合計金額",
-    "Balance": "バランス",
-    "Bonus": "ボーナス",
-    "Top_seller": "トップセラー",
-    "joined": "参加しました",
-    "copy_link": "IDOをシェアする",
-    "copy_project": "プロジェクトを共有する",
-    "blockchain_network": "ブロックチェーン ネットワーク",
-    "token_supply": "トークン供給",
-    "project_valuation": "プロジェクト評価",
-    "initial_token_circulation": "トークン初期流通量",
-    "initial_market_cap": "当初時価総額",
-    "copied": "コピー完了",
-    "create_faq": "質問を入力してください",
-    "no_data": "データなし",
-    "name": "アフィリエイター",
-    "value": "バランス",
-    "send": "送る",
-    "price": "価格",
-    "Submit":"決定",
-    "Submit_Word":"単語を提出",
-    "Edit":"修正",
-    "sale_history":"セール履歴",
-    "white_list_link":"White List リンク",
-    "white_list_history":"White List 履歴",
-    "wait":"待機",
-    "approve": "承認",
-    "reject": "拒否"
-  },
-  "proposal":{
-    "proposal":"提案",
-    "ok":"確認",
-    "cancel":"取り消し",
-    "price":"価格",
-    "Introduction":"導入"
-  },
-  "text_form": {
-    "home": "ホーム",
-    "Submit":"決定",
-    "wallet_address": "ウォレットアドレス",
-    "Email": "メールアドレス",
-    "answer": "回答",
-    "word": "ワーク",
-    "note": "ノート",
-    "register_time" : "登録時間"
-  },
-  "text_info": {
-    "business_achievements": "ビジネスの成果",
-    "top_seller": "トップセラー",
-    "contact": "コンタクト",
-    "become_sponsor": "スポンサーになる",
-    "my_performance": "マイパフォーマンス",
-    "projects": "プロジェクト"
-  },
-  "response": {
-    "success": "成功"
-  },
-  "Update_info": {
-    "update": "アップデート",
-    "connect_wallet": "ウォレットを接続する",
-    "connected": "接続されました。",
-    "need_connect": "ウォレットに接続が必要です。",
-    "name": "SNS名",
-    "value": "プロフィールURL",
-    "duplicate": "重複情報",
-    "wallet_duplicate": "すでに使用されているアドレス",
-    "change_wallet": "ウォレットマネージャで他のウォレットを選択してください。",
-    "wallet_address": "ウォレットアドレス"
-  },
-  "status": {
-    "token_sale": "トークンセール",
-    "white_list": "White List",
-    "ended": "終了しました",
-    "more_detail": "もっと詳しく"
+  "set": {
+    "create_set": "セット作成",
+    "name": "セット名",
+    "description": "説明",
+    "created_date": "作成日",
+    "card_number": "カード数",
+    "learned": "学習済み",
+    "save": "保存",
+    "create": "作成",
+    "name_placeholder": "セット名を入力してください",
+    "description_placeholder": "説明を入力してください",
+    "card_front_placeholder": "表面を入力してください",
+    "card_back_placeholder": "裏面を入力してください",
+    "update_set": "セット更新"
   }
 }

@@ -2,6 +2,7 @@ import { Grid, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useTranslation } from "react-i18next";
 
 export default function CardCreator(props: {
   index: number;
@@ -12,6 +13,7 @@ export default function CardCreator(props: {
   removeCard(index: number): void;
 }) {
   const { addCard, back, editCard, front, index, removeCard } = props;
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -39,7 +41,7 @@ export default function CardCreator(props: {
           <TextField
             fullWidth
             variant="standard"
-            placeholder="Enter content of card front"
+            placeholder={t("set.card_front_placeholder")}
             value={front}
             onChange={(e) => editCard(index, e.target.value, back)}
           />
@@ -48,7 +50,7 @@ export default function CardCreator(props: {
           <TextField
             fullWidth
             variant="standard"
-            placeholder="Enter content of card back"
+            placeholder={t("set.card_back_placeholder")}
             value={back}
             onChange={(e) => editCard(index, front, e.target.value)}
           />

@@ -10,6 +10,7 @@ import CardCreator from "./components/CardCreator";
 import { useApiResource } from "lib/hooks";
 import { LoadingButton } from "@mui/lab";
 import { Redirect, useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -74,17 +75,19 @@ export default function Create() {
     history.push("/sets");
   };
 
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1>Create New Set</h1>
+      <h1>{t("set.create_set")}</h1>
 
       <form onSubmit={handleSubmit((data) => onSubmit(data))}>
         <Grid container mb={3}>
           <Grid item xs={5}>
             <Input
-              label="Name"
+              label={t("set.name")}
               name="name"
-              placeholder="Enter name of new set"
+              placeholder={t("set.name_placeholder")}
               control={control}
               fullWidth
             ></Input>
@@ -94,9 +97,9 @@ export default function Create() {
         <Grid container>
           <Grid item xs={5}>
             <Input
-              label="Description"
+              label={t("set.description")}
               name="description"
-              placeholder="Enter description of new set"
+              placeholder={t("set.description_placeholder")}
               control={control}
               fullWidth
             ></Input>
@@ -137,7 +140,7 @@ export default function Create() {
                 size="large"
                 loading={isSubmitting}
               >
-                Create
+                {t("set.create")}
               </LoadingButton>
             </Stack>
           </Grid>

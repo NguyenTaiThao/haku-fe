@@ -7,9 +7,11 @@ import RuleFolderIcon from "@mui/icons-material/RuleFolder";
 import { useQuery } from "react-query";
 import { DashboardDataType } from "lib/types";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import { useTranslation } from "react-i18next";
 
 export const StatisticCard: React.FC = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const { data: statisticsData, isFetching } = useQuery<DashboardDataType>(
     `statistics`
@@ -18,27 +20,27 @@ export const StatisticCard: React.FC = () => {
   const dataShow = useMemo(() => {
     return [
       {
-        label: "Sets",
+        label: t("home.sets"),
         value: statisticsData?.set_num ?? 0,
         type: "all",
       },
       {
-        label: "Learned sets",
+        label: t("home.learned_sets"),
         value: statisticsData?.learned_set_num ?? 0,
         type: "finished",
       },
       {
-        label: "Ongoing sets",
+        label: t("home.ongoing_sets"),
         value: statisticsData?.ongoing_set_num ?? 0,
         type: "running",
       },
       {
-        label: "Unlearned sets",
+        label: t("home.not_started_sets"),
         value: statisticsData?.unlearned_set_num ?? 0,
         type: "upcoming",
       },
     ];
-  }, [statisticsData]);
+  }, [statisticsData, t]);
 
   const getIcon = (type: string) => {
     switch (type) {

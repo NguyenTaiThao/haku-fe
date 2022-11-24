@@ -16,6 +16,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import clsx from "clsx";
 import { sidebarWidth } from "../common/constant";
+import { useTranslation } from "react-i18next";
 
 const SideBar = React.memo((props: any) => {
   const classes = useStyle();
@@ -26,6 +27,8 @@ const SideBar = React.memo((props: any) => {
   const history = useHistory();
   const [open, setOpen] = useState<boolean>(false);
   const [open2, setOpen2] = useState<boolean>(false);
+  const { t } = useTranslation();
+
   const handleOpen = (e: any) => {
     if (open === e?.label) {
       setOpen(false);
@@ -136,7 +139,7 @@ const SideBar = React.memo((props: any) => {
                   )}
                   <ListItemText
                     style={{ textTransform: "uppercase", paddingLeft: 5 }}
-                    primary={props.open ? c.label : ""}
+                    primary={props.open ? t(c.label) : ""}
                   />
                 </ListItem>
               </Link>

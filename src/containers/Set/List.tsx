@@ -16,8 +16,10 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
+import { useTranslation } from "react-i18next";
 
 export default function Index() {
+  const { t } = useTranslation();
   const { paginationData, refetch, handleChangeParams } = usePaginationQuery<
     SetType
   >("sets");
@@ -67,22 +69,22 @@ export default function Index() {
         width: 50,
       },
       {
-        Header: "Name",
+        Header: t("set.name"),
         accessor: "name",
         width: 150,
       },
       {
-        Header: "Description",
+        Header: t("set.description"),
         accessor: "description",
         width: 150,
       },
       {
-        Header: "Number of cards",
+        Header: t("set.card_number"),
         accessor: "card_count",
         width: 100,
       },
       {
-        Header: "Learned",
+        Header: t("set.learned"),
         accessor: "learned_percent",
         width: 100,
         Cell: ({ value }: CellProps<SetType>) => {
@@ -94,7 +96,7 @@ export default function Index() {
         },
       },
       {
-        Header: "Created Date",
+        Header: t("set.created_date"),
         accessor: "created_at",
         width: 150,
         search: false,
@@ -107,7 +109,7 @@ export default function Index() {
         },
       },
     ],
-    []
+    [t]
   );
 
   return (

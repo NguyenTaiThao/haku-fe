@@ -16,6 +16,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 interface Error {
   status: number;
@@ -122,6 +123,7 @@ export default function Login() {
   }, [admin]);
 
   const { updateAdminToken, updateAdmin } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const {
     control,
@@ -178,7 +180,7 @@ export default function Login() {
                     <Input
                       fullWidth
                       name="email"
-                      label="Email"
+                      label={t("auth.email")}
                       control={control}
                       sx={{
                         backgroundColor: "#000",
@@ -199,7 +201,7 @@ export default function Login() {
                     <Input
                       fullWidth
                       name="password"
-                      label="Password"
+                      label={t("auth.password")}
                       type="password"
                       control={control}
                       sx={{
@@ -239,7 +241,7 @@ export default function Login() {
                       marginTop: 18,
                     }}
                   >
-                    Login
+                    {t("auth.login")}
                   </Button>
                 </Grid>
                 <Grid mt={5}>
@@ -249,9 +251,9 @@ export default function Login() {
                     align="center"
                     style={{ color: "#fff" }}
                   >
-                    {"Don't have an account? "}
+                    {t("auth.not_registered")}
                     <Link to="/register" style={{ color: "#00F0FF" }}>
-                      Sign Up
+                      {t("auth.here")}
                     </Link>
                   </Typography>
                 </Grid>
