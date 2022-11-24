@@ -14,7 +14,7 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import { FILTER } from ".";
+import { FILTER } from "..";
 
 type PropTypes = {
   setHandleFlip: Dispatch<SetStateAction<() => void>>;

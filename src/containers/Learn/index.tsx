@@ -6,11 +6,11 @@ import { shuffle } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import Card from "./Card";
+import Card from "./QuizGameModal/Card";
 import CardNumber from "./CardNumber";
 import ExtensionBar from "./ExtensionBar";
 import Navigators from "./Navigators";
-import QuizGameModal from "./QuizGameModal";
+import QuizGameModal from "./QuizGameModal/index";
 
 export const FILTER = {
   ALL: 1,
@@ -28,7 +28,7 @@ export default function Learn() {
   const [filter, setFilter] = useState<number>(FILTER.ALL);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
 
-  const { isOpen, onOpen, onClose, onToggle } = useModalState(true);
+  const { isOpen, onOpen, onClose } = useModalState(true);
 
   const params = useParams();
   const { id } = params as { id: number };
@@ -183,6 +183,7 @@ export default function Learn() {
         isOpen={isOpen}
         onClose={onClose}
         cardNumber={setData?.card_count}
+        setId={id}
       />
     </div>
   );

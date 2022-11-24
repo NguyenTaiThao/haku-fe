@@ -1,56 +1,17 @@
-import { Box, Button, Slider, Stack, styled, Typography } from "@mui/material";
-import { DialogBase } from "components/Dialog";
-import React, { useState } from "react";
+import { Box, Button, Slider, styled, Typography } from "@mui/material";
+import React from "react";
 
-type PropTypes = {
-  isOpen: boolean;
-  onClose: () => void;
-  cardNumber?: number;
-};
-
-const STAGES = {
-  preStart: 1,
-  started: 2,
-  finished: 3,
-};
-
-export default function QuizGameModal({
-  isOpen,
-  onClose,
-  cardNumber = 0,
-}: PropTypes) {
-  const [questionNum, setQuestionNum] = useState(cardNumber);
-  const [stage, setStage] = useState(STAGES.preStart);
-
-  return (
-    <DialogBase
-      open={isOpen}
-      onClose={onClose}
-      title="Quiz Game"
-      fullScreen
-      fullHeight
-      disableEscapeKeyDown
-    >
-      {stage === 1 && (
-        <PreStartScreen
-          questionNum={questionNum}
-          maxQuestionNum={cardNumber * 2}
-          setQuestionNum={setQuestionNum}
-        />
-      )}
-    </DialogBase>
-  );
-}
-
-const PreStartScreen = ({
+export default function PreStartScreen({
   questionNum,
   maxQuestionNum,
   setQuestionNum,
+  handleStart,
 }: {
   questionNum: number;
   maxQuestionNum: number;
   setQuestionNum: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+  handleStart: () => void;
+}) {
   return (
     <Box
       sx={{
@@ -77,13 +38,14 @@ const PreStartScreen = ({
       <Button
         variant="contained"
         disabled={questionNum <= 0}
+        onClick={() => handleStart()}
         sx={{ mt: 5, width: 200, height: 90 }}
       >
         Start
       </Button>
     </Box>
   );
-};
+}
 
 const PrettoSlider = styled(Slider)({
   color: "#52af77",
