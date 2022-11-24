@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { errors } from '../common/errors';
+import axios from "axios";
+import { toast } from "react-toastify";
+import { errors } from "../common/errors";
 // create an axios instance
 toast.configure();
 const service = axios.create({
@@ -15,7 +15,7 @@ service.interceptors.request.use(
   },
   (error) => {
     // Do something with request error
-    console.log(error); // for debug
+    // console.log(error); // for debug
     Promise.reject(error);
   }
 );
@@ -25,7 +25,7 @@ service.interceptors.response.use(
   (response) => {
     if (response.data.message) {
       toast.success(response.data.message, {
-        position: 'top-center',
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -41,7 +41,7 @@ service.interceptors.response.use(
     // for debug
     if (error.response.status === 500) {
       toast.error(error.response.data.message, {
-        position: 'top-center',
+        position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -50,7 +50,7 @@ service.interceptors.response.use(
       });
     } else if (error.response.status === 401 || error.status === 403) {
       toast.error(error.response.data.message, {
-        position: 'top-center',
+        position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -61,7 +61,7 @@ service.interceptors.response.use(
       const mess = error.response.data.message;
       if (mess) {
         toast.error(mess, {
-          position: 'top-center',
+          position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -70,12 +70,11 @@ service.interceptors.response.use(
         });
       }
     } else if (error.response.status === 422) {
-      
     } else {
       const mess = error.response.data.message;
       if (mess) {
         toast.error(mess, {
-          position: 'top-center',
+          position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,

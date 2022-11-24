@@ -11,6 +11,7 @@ import CardNumber from "./CardNumber";
 import ExtensionBar from "./ExtensionBar";
 import Navigators from "./Navigators";
 import QuizGameModal from "./QuizGameModal/index";
+import { toast } from "react-toastify";
 
 export const FILTER = {
   ALL: 1,
@@ -56,7 +57,6 @@ export default function Learn() {
       let index;
       if (value < cards.length - 1) index = value + 1;
       else index = 0;
-      console.log(value, index, cards.length);
       return index;
     });
   }, [cards]);
@@ -89,7 +89,7 @@ export default function Learn() {
   const toggleRemember = useCallback(
     async (id: number) => {
       try {
-        const res = await request.post(`card/toggle-remember/${id}`);
+        await request.post(`card/toggle-remember/${id}`);
         const newCards = cards.map((card) =>
           card.id === id
             ? { ...card, is_remembered: !card.is_remembered }
@@ -100,7 +100,7 @@ export default function Learn() {
 
         handleNext();
       } catch (e) {
-        console.log(e);
+        toast.error("Something went wrong");
       }
     },
     [handleNext]
@@ -134,7 +134,6 @@ export default function Learn() {
 
   useEffect(() => {
     setCurrentCard(cards[currentCardIndex]);
-    console.log(currentCardIndex);
   }, [currentCardIndex, setCurrentCard, cards]);
 
   return (
