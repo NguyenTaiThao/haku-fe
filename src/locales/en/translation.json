@@ -38,5 +38,20 @@
     "card_front_placeholder": "Enter front content of new card",
     "card_back_placeholder": "Enter back content of new card",
     "update_set": "Update set"
+  },
+  "learn": {
+    "shuffle": "Shuffle",
+    "auto_play": "Auto play",
+    "stop": "Stop",
+    "quiz": "Quiz",
+    "learn": "Learn",
+    "well_come": "Well come to Quiz",
+    "start": "Start",
+    "please_choose": "Please select number of questions",
+    "your_score": "Your score",
+    "passed_message": "Good job!",
+    "failed_message": "You can do better!",
+    "try_again": "Try again",
+    "exit": "Exit"
   }
 }

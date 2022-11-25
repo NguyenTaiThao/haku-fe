@@ -1,5 +1,6 @@
 import { Box, Button, Slider, styled, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function PreStartScreen({
   questionNum,
@@ -12,6 +13,7 @@ export default function PreStartScreen({
   setQuestionNum: React.Dispatch<React.SetStateAction<number>>;
   handleStart: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -24,9 +26,9 @@ export default function PreStartScreen({
         flexDirection: "column",
       }}
     >
-      <h1>Wellcome to Quiz Game</h1>
+      <h1>{t("learn.well_come")}</h1>
       <Typography variant="overline">
-        Please select number of question: {questionNum}
+        {t("learn.please_choose")}: {questionNum}
       </Typography>
       <PrettoSlider
         valueLabelDisplay="on"
@@ -41,7 +43,7 @@ export default function PreStartScreen({
         onClick={() => handleStart()}
         sx={{ mt: 5, width: 200, height: 90 }}
       >
-        Start
+        {t("learn.start")}
       </Button>
     </Box>
   );

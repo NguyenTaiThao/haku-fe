@@ -81,11 +81,13 @@ export default function Index() {
       {
         Header: t("set.card_number"),
         accessor: "card_count",
+        search: false,
         width: 100,
       },
       {
         Header: t("set.learned"),
         accessor: "learned_percent",
+        search: false,
         width: 100,
         Cell: ({ value }: CellProps<SetType>) => {
           return (

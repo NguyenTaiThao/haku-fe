@@ -1,5 +1,6 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const PASS_PERCENTAGE = 80;
 
@@ -14,6 +15,7 @@ export default function ResultScreen({
   handleClose: () => void;
   handleReset: () => void;
 }) {
+  const { t } = useTranslation();
   const percentage = Math.floor((points / questionNum) * 10 ** 4) / 100;
   const isPassed = percentage > PASS_PERCENTAGE;
 
@@ -37,18 +39,18 @@ export default function ResultScreen({
         <span role="img" aria-label="">
           🔥
         </span>
-        Your point: {points}/{questionNum} ({percentage}%)
+        {t("learn.your_score")}: {points}/{questionNum} ({percentage}%)
       </Typography>
       {isPassed ? (
         <Typography variant="h4">
-          Good job{" "}
+          {t("learn.passed_message")}{" "}
           <span role="img" aria-label="">
             🚀🚀
           </span>
         </Typography>
       ) : (
         <Typography variant="h4">
-          Let's try once a gain{" "}
+          {t("learn.failed_message")}{" "}
           <span role="img" aria-label="">
             💪💪
           </span>
@@ -60,14 +62,14 @@ export default function ResultScreen({
           onClick={() => handleClose()}
           sx={{ mt: 5, width: 200, height: 60, mr: 5 }}
         >
-          Back to home
+          {t("learn.exit")}
         </Button>
         <Button
           variant="contained"
           onClick={handleRestart}
           sx={{ mt: 5, width: 200, height: 60 }}
         >
-          Try again
+          {t("learn.try_again")}
         </Button>
       </Stack>
     </Box>

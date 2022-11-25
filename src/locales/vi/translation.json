@@ -38,5 +38,20 @@
     "card_front_placeholder": "Nhập thông tin hiển thị trước",
     "card_back_placeholder": "Nhập thông tin hiển thị sau",
     "update_set": "Cập nhật bộ"
+  },
+  "learn": {
+    "shuffle": "Xáo trộn",
+    "auto_play": "Tự động chuyển",
+    "stop": "Dừng",
+    "quiz": "Kiểm tra",
+    "learn": "Học",
+    "well_come": "Chào mừng bạn đến với bộ từ vựng",
+    "start": "Bắt đầu",
+    "please_choose": "Vui lòng chọn số câu hỏi",
+    "your_score": "Điểm của bạn",
+    "passed_message": "Làm tốt lắm!",
+    "failed_message": "Bạn cần cố gắng hơn nữa!",
+    "try_again": "Thử lại",
+    "exit": "Thoát"
   }
 }

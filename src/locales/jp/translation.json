@@ -38,5 +38,20 @@
     "card_front_placeholder": "表面を入力してください",
     "card_back_placeholder": "裏面を入力してください",
     "update_set": "セット更新"
+  },
+  "learn": {
+    "shuffle": "シャッフル",
+    "auto_play": "オートプレイ",
+    "stop": "停止",
+    "quiz": "クイズ",
+    "learn": "学習",
+    "well_come": "ようこそ",
+    "start": "スタート",
+    "please_choose": "選択してください",
+    "your_score": "あなたのスコア",
+    "passed_message": "おめでとうございます！",
+    "failed_message": "残念ですが。もう一度挑戦してください！",
+    "try_again": "もう一度挑戦",
+    "exit": "終了"
   }
 }

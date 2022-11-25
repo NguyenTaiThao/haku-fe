@@ -12,6 +12,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import QuizIcon from "@mui/icons-material/Quiz";
 import StopIcon from "@mui/icons-material/Stop";
 import { SetType } from "lib/types";
+import { useTranslation } from "react-i18next";
 
 type ProsType = {
   handleShuffle?: () => void;
@@ -34,6 +35,7 @@ export default function ExtensionBar({
   isAutoPlaying,
   setIsAutoPlaying,
 }: ProsType) {
+  const { t } = useTranslation();
   const [clearInterval, setClearInterval] = useState<() => void>(
     () => () => {}
   );
@@ -71,7 +73,7 @@ export default function ExtensionBar({
           disabled={isRunning || isAutoPlaying}
         >
           <ShuffleIcon sx={{ mr: 1 }} />
-          Shuffle
+          {t("learn.shuffle")}
         </Button>
         <Button
           variant="outlined"
@@ -83,7 +85,7 @@ export default function ExtensionBar({
           ) : (
             <PlayArrowIcon sx={{ mr: 1 }} />
           )}
-          {isAutoPlaying ? "Stop" : "Auto Play"}
+          {isAutoPlaying ? t("learn.stop") : t("learn.auto_play")}
         </Button>
         <Button
           variant="outlined"
@@ -93,7 +95,7 @@ export default function ExtensionBar({
           }
         >
           <QuizIcon sx={{ mr: 1 }} />
-          Quiz Game
+          {t("learn.quiz")}
         </Button>
       </Stack>
     </Box>
