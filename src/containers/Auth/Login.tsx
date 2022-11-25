@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
 import { useAPI } from "api/api";
@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "containers/AuthProvider";
 import { Input } from "components/Form";
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -104,11 +105,6 @@ type credential = {
   password: string;
 };
 
-const schema = yup.object({
-  email: yup.string().required(),
-  password: yup.string().required(),
-});
-
 export default function Login() {
   const classes = useStyle();
   const history = useHistory();
@@ -124,6 +120,15 @@ export default function Login() {
 
   const { updateAdminToken, updateAdmin } = useContext(AuthContext);
   const { t } = useTranslation();
+
+  const schema = useMemo(
+    () =>
+      yup.object({
+        email: yup.string().required(t("error.required")),
+        password: yup.string().required(t("error.required")),
+      }),
+    [t]
+  );
 
   const {
     control,
@@ -150,7 +155,7 @@ export default function Login() {
     } catch (e) {
       const error = e as Error;
       if (error?.status === 401) {
-        setError(error?.data?.message);
+        setError(t("error.wrong_email_or_password"));
       }
     }
   };

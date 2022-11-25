@@ -53,5 +53,12 @@
     "failed_message": "You can do better!",
     "try_again": "Try again",
     "exit": "Exit"
+  },
+  "error": {
+    "required": "This field is required",
+    "email": "This field must be a valid email",
+    "password_confirmation": "Password confirmation does not match",
+    "wrong_email_or_password": "Wrong email or password",
+    "email_already_exists": "Email already exists"
   }
 }

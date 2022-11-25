@@ -53,5 +53,12 @@
     "failed_message": "Bạn cần cố gắng hơn nữa!",
     "try_again": "Thử lại",
     "exit": "Thoát"
+  },
+  "error": {
+    "required": "Vui lòng nhập thông tin",
+    "email": "Vui lòng nhập đúng định dạng email",
+    "password_confirmation": "Mật khẩu không khớp",
+    "wrong_email_or_password": "Email hoặc mật khẩu không đúng",
+    "email_already_exists": "Email đã tồn tại"
   }
 }

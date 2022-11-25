@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
 import { useAPI } from "api/api";
@@ -104,15 +104,6 @@ type credential = {
   password: string;
 };
 
-const schema = yup.object({
-  email: yup.string().required(),
-  password: yup.string().required(),
-  repassword: yup
-    .string()
-    .required()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
-});
-
 export default function Register() {
   const classes = useStyle();
   const history = useHistory();
@@ -128,6 +119,19 @@ export default function Register() {
 
   const { updateAdminToken, updateAdmin } = useContext(AuthContext);
   const { t } = useTranslation();
+
+  const schema = useMemo(
+    () =>
+      yup.object({
+        email: yup.string().required(t("error.required")),
+        password: yup.string().required(t("error.required")),
+        repassword: yup
+          .string()
+          .required(t("error.required"))
+          .oneOf([yup.ref("password"), null], t("error.password_confirmation")),
+      }),
+    [t]
+  );
 
   const {
     control,
@@ -154,8 +158,8 @@ export default function Register() {
       }
     } catch (e) {
       const error = e as Error;
-      if (error?.status === 401) {
-        setError(error?.data?.message);
+      if (error?.status === 422) {
+        setError(t("error.email_already_exists"));
       }
     }
   };
